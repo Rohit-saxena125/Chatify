@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  phone:{
+  phone: {
     type: String,
     required: true,
   },
@@ -64,7 +64,7 @@ userSchema.methods.generateAuthToken = async function () {
       }
     );
   } catch (err) {
-    const error = [400,err.message];
+    const error = [400, err.message];
     next(error);
   }
 };
