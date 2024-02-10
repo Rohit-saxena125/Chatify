@@ -1,1 +1,10 @@
-ahjksbs
+const express = require('express');
+const router = express.Router();
+const Auth = require('../Controllers/Auth-controller');
+const AuthMiddleware = require('../Middleware/Auth-Middleware');
+const validation = require('../Middleware/Validator');
+const { Userchema, Loginchema } = require('../Validator/Auth-validation');
+router.route("/signup").post(validation(Userchema),Auth.Signup);
+router.route("/login").post(validation(Loginchema),Auth.Login);
+router.route("/validtoken").get(AuthMiddleware,Auth.ValidToken);
+module.exports = router;
