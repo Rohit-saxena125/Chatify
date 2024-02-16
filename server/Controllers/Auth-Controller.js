@@ -46,16 +46,16 @@ const Login = async (req, res) => {
 const ValidToken = async (req, res) => {
   try {
     const { username, email, _id, followers, following, favourite } = req.user;
-    // const favouritePostIdArray = favourite.map((obj) => obj.postId);
-    // const favouritePostArray = await Promise.all(
-    //   favouritePostIdArray.map(async (postId) => {
-    //     const post = await Post.findById(postId).populate(
-    //       "user",
-    //       "_id username email"
-    //     );
-    //     return post;
-    //   })
-    // );
+    const favouritePostIdArray = favourite.map((obj) => obj.postId);
+    const favouritePostArray = await Promise.all(
+      favouritePostIdArray.map(async (postId) => {
+        const post = await Post.findById(postId).populate(
+          "user",
+          "_id username email"
+        );
+        return post;
+      })
+    );
     const user = {
       username,
       email,
@@ -64,8 +64,7 @@ const ValidToken = async (req, res) => {
       following,
       favourite,
     };
-    // res.status(200).send({ user, favoritePosts: favouritePostArray });
-    res.status(200).send({user})
+    res.status(200).send({ user, favoritePosts: favouritePostArray });
   } catch (error) {
     console.log(error.message);
   }

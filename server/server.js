@@ -5,6 +5,18 @@ const PORT = process.env.PORT || 4000;
 const dbconnect = require("./Config/Conn");
 const errormiddleare = require("./Middleware/Error");
 const AuthRoute = require("./Routes/Auth-route");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+app.use(cors(
+  {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true
+  }
+));
+app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/auth", AuthRoute);
