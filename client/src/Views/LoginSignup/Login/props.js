@@ -3,7 +3,7 @@ export const mapStateToProps = (state) => ({
   userToken: state.userToken,
   isUserLoggedIn: state.isUserLoggedIn,
 });
-export const mapsDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   loginUser: (email,password, navigate) => dispatch(loginUser(email,password, navigate)),
   validateLoginStatus: (navigate) => dispatch(validateLoginStatus(navigate)),
 });

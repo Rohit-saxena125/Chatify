@@ -7,10 +7,7 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import { deepPurple } from "@mui/material/colors";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import Grid from "@mui/material/Grid";
-import { Link as NavigateTo, Navigate, useNavigate } from "react-router-dom";
-import Link from "@mui/material/Link";
-
+import {useNavigate } from "react-router-dom";
 const Login = (props) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -18,7 +15,7 @@ const Login = (props) => {
     password: "",
   });
   const [loginStatus, setLoginStatus] = useState(false);
-  const { loginUser, validateLoginStatus } = props;
+  const { loginUser, validateLoginStatus,isUserLoggedIn } = props;
   useEffect(() => {
     const checkIsUserLoggedIn = async () => {
       try {
@@ -37,8 +34,10 @@ const Login = (props) => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-      console.log(user)
-      await loginUser(user.email,user.password,navigate);
+      const email = user.email;
+      const password = user.password;
+      console.log(user,isUserLoggedIn)
+      await loginUser(email,password,navigate);
       console.log("Login Success");
     }
     catch (er) {

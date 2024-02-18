@@ -34,7 +34,7 @@ const Login = async (req, res) => {
         .json({
           message: "User logged in successfully",
           token: await user.generateAuthToken(),
-          user: user._id.toString(),
+          user: user,
         });
     } else {
       return res.status(400).json({ error: "Invalid credentials" });
