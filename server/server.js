@@ -29,4 +29,4 @@ dbconnect()
   })
   .catch((e) => {
     console.log(e);
-  });
+});

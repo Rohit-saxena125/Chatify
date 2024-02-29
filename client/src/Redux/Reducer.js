@@ -8,11 +8,16 @@ import {
   USER_LOGIN_STATUS_FULFILLED,
   USER_LOGIN_STATUS_PENDING,
   USER_LOGIN_STATUS_REJECTED,
+  REGISTER_USER,
+  REGISTER_USER_FULFILLED,
+  REGISTER_USER_PENDING,
+  REGISTER_USER_REJECTED,
 } from "./actionTypes";
 const initialState = {
   userToken: "",
   isUserLoggedIn: false,
   isLoading: false,
+  userRegistrationSuccessful:undefined,
   activeUserDetails: {
     username: "",
     email: "",
@@ -24,6 +29,33 @@ const initialState = {
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case REGISTER_USER: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    case REGISTER_USER_FULFILLED: {
+      return {
+        ...state,
+        isLoading: false,
+        userRegistrationSuccessful: true,
+      }
+    }
+    case REGISTER_USER_PENDING: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    case REGISTER_USER_REJECTED: {
+      toast.error('Sorry Try again later!')
+      return {
+        ...state,
+        isLoading: false,
+        userRegistrationSuccessful: false,
+      }
+    }
     case LOGIN_USER: {
       return {
         ...state,

@@ -7,4 +7,5 @@ const { Userchema, Loginchema } = require('../Validator/Auth-validation');
 router.route("/signup").post(validation(Userchema),Auth.Signup);
 router.route("/login").post(validation(Loginchema),Auth.Login);
 router.route("/validtoken").get(AuthMiddleware,Auth.ValidToken);
+// router.route("/allpost").get(AuthMiddleware,Auth.Fetchallpost);
 module.exports = router;

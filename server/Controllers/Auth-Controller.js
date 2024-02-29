@@ -1,4 +1,4 @@
-const { TokenExpiredError } = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const User = require("../Models/User-Model");
 const bcrypt = require("bcryptjs");
 const Post = require("../Models/Post-Model");
@@ -69,4 +69,12 @@ const ValidToken = async (req, res) => {
     console.log(error.message);
   }
 };
-module.exports = { Signup, Login, ValidToken };
+const Fetchallpost = async(req,res)=>{
+  // try{
+
+  // }
+  // catch(err){
+  //   console.log(err.message)
+  // }
+}
+module.exports = { Signup, Login, ValidToken,Fetchallpost};

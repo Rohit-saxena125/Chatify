@@ -94,21 +94,18 @@ const Login = (props) => {
                 </Button>
               </Stack>
             </div>
+            <div className="main" >
+              <Stack spacing={2} direction="row">
+                <Button
+                  fullWidth
+                  variant="contained"
+                  onClick={() => navigate("/signup")}
+                >
+                  If you don't have account?Signup
+                </Button>
+              </Stack>
+            </div>
           </Box>
-        {/* <Grid container>
-          <Grid item xs>
-            <Link href="#" variant="body2">
-              Forgot password?
-            </Link>
-          </Grid>
-          <Grid item>
-            <NavigateTo to="/signup">
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </NavigateTo>
-          </Grid>
-        </Grid> */}
       </div>
     </div>
   );
