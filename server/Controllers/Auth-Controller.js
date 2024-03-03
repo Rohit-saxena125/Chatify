@@ -1,4 +1,4 @@
-const { TokenExpiredError } = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const User = require("../Models/User-Model");
 const bcrypt = require("bcryptjs");
 const Post = require("../Models/Post-Model");
@@ -34,7 +34,7 @@ const Login = async (req, res) => {
         .json({
           message: "User logged in successfully",
           token: await user.generateAuthToken(),
-          user: user._id.toString(),
+          user: user,
         });
     } else {
       return res.status(400).json({ error: "Invalid credentials" });
@@ -46,16 +46,16 @@ const Login = async (req, res) => {
 const ValidToken = async (req, res) => {
   try {
     const { username, email, _id, followers, following, favourite } = req.user;
-    // const favouritePostIdArray = favourite.map((obj) => obj.postId);
-    // const favouritePostArray = await Promise.all(
-    //   favouritePostIdArray.map(async (postId) => {
-    //     const post = await Post.findById(postId).populate(
-    //       "user",
-    //       "_id username email"
-    //     );
-    //     return post;
-    //   })
-    // );
+    const favouritePostIdArray = favourite.map((obj) => obj.postId);
+    const favouritePostArray = await Promise.all(
+      favouritePostIdArray.map(async (postId) => {
+        const post = await Post.findById(postId).populate(
+          "user",
+          "_id username email"
+        );
+        return post;
+      })
+    );
     const user = {
       username,
       email,
@@ -64,10 +64,17 @@ const ValidToken = async (req, res) => {
       following,
       favourite,
     };
-    // res.status(200).send({ user, favoritePosts: favouritePostArray });
-    res.status(200).send({user})
+    res.status(200).send({ user, favoritePosts: favouritePostArray });
   } catch (error) {
     console.log(error.message);
   }
 };
-module.exports = { Signup, Login, ValidToken };
+const Fetchallpost = async(req,res)=>{
+  // try{
+
+  // }
+  // catch(err){
+  //   console.log(err.message)
+  // }
+}
+module.exports = { Signup, Login, ValidToken,Fetchallpost};
