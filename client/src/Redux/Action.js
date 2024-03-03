@@ -5,7 +5,7 @@ import {
   USER_LOGIN_STATUS_REJECTED,
   USER_LOGIN_STATUS_FULFILLED,
   REGISTER_USER,
-} from "./actionTypes";
+} from "./ActionTypes";
 import axios from "axios";
 export const registerUser = (user, navigate) => {
   return (dispatch) => {

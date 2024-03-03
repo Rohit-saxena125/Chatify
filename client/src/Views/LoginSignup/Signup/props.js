@@ -1,4 +1,4 @@
-import { registerUser } from "../../../Redux/action";
+import { registerUser } from "../../../Redux/Action";
 export const mapStateToProps = (state) => {
   return {
     userRegistrationSuccessful: state.userRegistrationSuccessful,

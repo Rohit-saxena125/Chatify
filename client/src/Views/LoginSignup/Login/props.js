@@ -1,4 +1,4 @@
-import { loginUser, validateLoginStatus } from '../../../Redux/action';
+import { loginUser, validateLoginStatus } from '../../../Redux/Action';
 export const mapStateToProps = (state) => ({
   userToken: state.userToken,
   isUserLoggedIn: state.isUserLoggedIn,

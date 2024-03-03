@@ -12,7 +12,7 @@ import {
   REGISTER_USER_FULFILLED,
   REGISTER_USER_PENDING,
   REGISTER_USER_REJECTED,
-} from "./actionTypes";
+} from "./ActionTypes";
 const initialState = {
   userToken: "",
   isUserLoggedIn: false,
